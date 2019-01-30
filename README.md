@@ -9,52 +9,50 @@
 Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
 developing complex Web applications with multiple tiers.
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+Instalación:
+0)previamente tener instalador composer
+1) desde consola en la raiz del proyecto ejecutar init y seleccionar modo desarrollador "0"
+2) Crear bd desde su manejador preferido (este proyecto esta en mysql), una vez creada la bd, ir a 
+"common\config\main-local.php" y agregar los parametros de su conexion a la bd.
+3) Instalar los siguientes componentes desde la raiz del sitio utilizando composer
+ a)composer require --prefer-dist johnitvn/yii2-user-plus
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+ b)composer require --prefer-dist johnitvn/yii2-rbac-plus "*"
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
+4) ir a common/config/main-local.php y agregar lo siguientes
+'modules' => 
+    [ 
+        'user' => 
+        [ 
+            'class' => 'johnitvn\userplus\basic\Module', 
+        ],
+    ],
+5) consola dede raiz del proyecto ejecutar 
 
-DIRECTORY STRUCTURE
--------------------
+php yii migrate
+responder yes
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-```
+6)modificar backend/config/main-local en componentes
+
+'user' => 
+[
+
+    'class'=>'yii\web\User',
+
+    'identityClass' => 'johnitvn\userplus\basic\models\UserAccounts',
+
+    'loginUrl'=>'index.php?r=/user/security/login'
+
+],
+
+'modules' => 
+[
+
+    'user' => 
+    [
+
+    'class' => 'johnitvn\userplus\basic\Module',
+
+    ],
+],
