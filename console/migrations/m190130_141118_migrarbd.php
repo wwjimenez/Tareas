@@ -106,13 +106,7 @@ class m190130_141118_migrarbd extends Migration
         $resultado13= Yii::$app->db->createCommand('
                     ALTER TABLE `auth_assignment`
                     ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;')->execute();
-        $resultado14= Yii::$app->db->createCommand('
-                    ALTER TABLE `auth_item`
-                    ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;')->execute();
-         $resultado15= Yii::$app->db->createCommand('
-                    ALTER TABLE `auth_item_child`
-                    ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;')->execute();
+       
         print_r($resultado);
     }
 
