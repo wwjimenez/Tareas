@@ -41,17 +41,7 @@ class m190130_141118_migrarbd extends Migration
                       PRIMARY KEY (`name`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;');
 
-        $resultado4= Yii::$app->db->createCommand('CREATE TABLE IF NOT EXISTS `migration` (
-                      `version` varchar(180) NOT NULL,
-                      `apply_time` int(11) DEFAULT NULL,
-                      PRIMARY KEY (`version`)
-                    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;')->execute();
-
-        $resultado5= Yii::$app->db->createCommand('INSERT INTO `migration` (`version`, `apply_time`) VALUES
-            ("m000000_000000_base", 1548818986),
-            ("m150703_191015_init", 1548818993),
-            ("m140506_102106_rbac_init", 1548819817),
-            ("m170907_052038_rbac_add_index_on_auth_assignment_user_id", 1548819818);')->execute();
+        
 
         $resultado6= Yii::$app->db->createCommand('CREATE TABLE IF NOT EXISTS `prioridad` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
