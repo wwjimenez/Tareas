@@ -24,6 +24,7 @@ Instalación:
 4) ir a common/config/main-local.php y agregar lo siguientes
 
 'modules' => 
+
     [ 
         'user' => 
         [ 
@@ -49,6 +50,8 @@ responder yes
     'loginUrl'=>'index.php?r=/user/security/login'
 
 ],
+
+Despues de componentes agregar:
 
 'modules' => 
 [
